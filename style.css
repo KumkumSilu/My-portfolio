@@ -1,0 +1,568 @@
+/* GLOBAL STYLES & COLOR PALETTE (Based on Video Analysis) */
+:root {
+    --primary-color: #00bcd4; /* Cyan/Teal accent color */
+    --background-dark: #1e3c45; /* Dark Teal/Green background (Main body color) */
+    --text-light: #ffffff;     /* Pure white text */
+    --card-bg: #295159;        /* Slightly lighter teal/green for cards/sections */
+    --subtle-text: #b3d9d9;    /* Light teal/gray for metadata and subtext */
+    --timeline-color: #388e8e; /* Color for timeline line */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif; 
+    background-color: var(--background-dark);
+    color: var(--text-light);
+    line-height: 1.6;
+    scroll-behavior: smooth;
+}
+
+main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+/* HEADINGS & TEXT */
+h1, h2, h3, h4 {
+    color: var(--text-light);
+    margin-bottom: 0.75rem;
+}
+
+h1 {
+    font-size: 3rem;
+    font-weight: 800;
+}
+
+h2 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    padding-bottom: 0.5rem;
+    border-bottom: 3px solid var(--primary-color); 
+    margin-top: 3rem;
+    margin-bottom: 2rem;
+}
+
+p {
+    margin-bottom: 1rem;
+}
+
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+a:hover {
+    color: var(--text-light);
+    text-decoration: underline;
+}
+
+/* --- 1. HEADER STYLES --- */
+header {
+    background-color: var(--card-bg); 
+    padding: 4rem 20px;
+    border-bottom: 8px solid var(--primary-color);
+}
+
+.header-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex; 
+    align-items: center; /* Centers the whole block vertically */
+    gap: 50px; 
+}
+
+.profile-image {
+    width: 180px; 
+    height: 180px;
+    border-radius: 50%; 
+    object-fit: cover;
+    border: 5px solid var(--primary-color); 
+    flex-shrink: 0; 
+}
+
+.header-content {
+    text-align: left;
+    flex-grow: 1;
+    /* FIX: Ensure the content block is aligned centrally with the picture */
+    align-self: center; 
+}
+
+header .title {
+    color: var(--subtle-text);
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+/* BUTTONS */
+.button {
+    display: inline-block;
+    padding: 12px 25px;
+    margin: 5px 10px 5px 0;
+    border-radius: 6px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    transition: all 0.3s;
+}
+
+.button.primary {
+    background-color: var(--primary-color);
+    color: var(--background-dark);
+    border: 2px solid var(--primary-color);
+}
+
+.button.primary:hover {
+    background-color: transparent;
+    color: var(--primary-color);
+    box-shadow: 0 0 10px var(--primary-color);
+    text-decoration: none;
+}
+
+.button.secondary {
+    background-color: transparent;
+    color: var(--text-light);
+    border: 2px solid var(--subtle-text);
+}
+
+.button.secondary:hover {
+    background-color: var(--subtle-text);
+    color: var(--background-dark);
+    text-decoration: none;
+}
+
+/* --- 2. SUMMARY SECTION (Side-by-Side Expertise List) --- */
+#summary {
+    padding-bottom: 0;
+}
+.summary-content {
+    display: flex;
+    gap: 40px;
+}
+.summary-content p {
+    flex: 2;
+}
+.core-expertise-list {
+    flex: 1;
+    padding: 20px;
+    background-color: var(--card-bg);
+    border-radius: 8px;
+}
+.core-expertise-list h3 {
+    margin-top: 0;
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 10px;
+}
+.core-expertise-list ul {
+    list-style: none;
+    padding-left: 0;
+}
+.core-expertise-list li {
+    font-size: 0.95rem;
+    padding: 5px 0;
+    border-bottom: 1px dashed #388e8e;
+}
+.core-expertise-list li:last-child {
+    border-bottom: none;
+}
+
+/* --- 3. TECHNICAL SKILLS & CERTIFICATIONS (Grid Layout) --- */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-bottom: 40px;
+}
+.skill-card {
+    background-color: var(--card-bg);
+    padding: 25px;
+    border-radius: 8px;
+    border-top: 5px solid var(--primary-color);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+.skill-card-empty {
+    display: none; 
+}
+.skill-card h4 {
+    color: var(--primary-color);
+    font-size: 1.15rem;
+}
+
+/* Certifications Grid (5 items, 3 columns wide) */
+.certifications-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+.cert-card {
+    background-color: var(--card-bg);
+    padding: 25px;
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden;
+    border-top: 5px solid var(--subtle-text);
+}
+.cert-number {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: var(--primary-color);
+    color: var(--background-dark);
+    padding: 5px 12px;
+    font-weight: 700;
+    border-bottom-left-radius: 8px;
+}
+.cert-card h4 {
+    color: var(--text-light);
+    font-size: 1.1rem;
+    margin-top: 10px;
+}
+
+/* --- 4. PROFESSIONAL EXPERIENCE --- */
+.job-entry.standalone {
+    background-color: var(--card-bg);
+    padding: 30px;
+    border-radius: 10px;
+    margin-bottom: 2.5rem;
+    border-left: 5px solid var(--primary-color);
+}
+.job-detail-content {
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+}
+.experience-image-placeholder {
+    flex-shrink: 0;
+    width: 350px;
+}
+.job-visual {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    object-fit: cover;
+}
+.job-text {
+    flex-grow: 1;
+}
+
+/* Cognizant Timeline */
+.timeline-section h3 {
+    text-align: center;
+    border-bottom: none;
+    padding-bottom: 0;
+}
+.timeline {
+    position: relative;
+    max-width: 900px;
+    margin: 40px auto;
+}
+.timeline::after {
+    content: '';
+    position: absolute;
+    width: 3px;
+    background-color: var(--timeline-color);
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    margin-left: -1.5px;
+}
+.timeline-item {
+    padding: 10px 40px;
+    position: relative;
+    background-color: inherit;
+    width: 50%;
+}
+.timeline-item.left {
+    left: 0;
+}
+.timeline-item.right {
+    left: 50%;
+}
+.timeline-dot {
+    height: 30px;
+    width: 30px;
+    background-color: var(--primary-color);
+    border: 3px solid var(--background-dark);
+    border-radius: 50%;
+    position: absolute;
+    top: 15px;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--background-dark);
+    font-weight: bold;
+}
+.timeline-item.left .timeline-dot {
+    right: -15px;
+}
+.timeline-item.right .timeline-dot {
+    left: -15px;
+}
+.timeline-content {
+    padding: 20px 30px;
+    background-color: var(--card-bg);
+    position: relative;
+    border-radius: 8px;
+    border: 1px solid var(--timeline-color);
+}
+.timeline-content h4 {
+    color: var(--primary-color);
+}
+.timeline-item.left .timeline-content::after {
+    content: " ";
+    height: 0;
+    position: absolute;
+    top: 22px;
+    width: 0;
+    z-index: 1;
+    right: -15px;
+    border: medium solid var(--card-bg);
+    border-width: 10px 0 10px 10px;
+    border-color: transparent transparent transparent var(--card-bg);
+}
+.timeline-item.right .timeline-content::after {
+    content: " ";
+    height: 0;
+    position: absolute;
+    top: 22px;
+    width: 0;
+    z-index: 1;
+    left: -15px;
+    border: medium solid var(--card-bg);
+    border-width: 10px 10px 10px 0;
+    border-color: transparent var(--card-bg) transparent transparent;
+}
+
+/* Achievement Metrics */
+.key-achievements {
+    margin-top: 40px;
+    padding: 30px;
+    background-color: var(--card-bg);
+    border-radius: 10px;
+}
+.achievement-metrics {
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    margin-bottom: 30px;
+    border-bottom: 1px solid var(--timeline-color);
+    padding-bottom: 20px;
+}
+.metric-value {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--primary-color);
+    display: block;
+}
+.metric-label {
+    font-size: 1rem;
+    color: var(--subtle-text);
+}
+.highlight-text {
+    font-size: 1rem;
+    color: var(--subtle-text);
+}
+
+/* --- 5. PROJECTS PORTFOLIO (Grid Layout) --- */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+}
+.project-card {
+    background-color: var(--card-bg);
+    padding: 30px;
+    border-radius: 10px;
+    border-left: 5px solid var(--primary-color);
+}
+.project-card h4 {
+    color: var(--primary-color);
+    font-size: 1.4rem;
+}
+.project-card ul {
+    list-style: disc;
+    padding-left: 20px;
+}
+.project-card li {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    color: var(--subtle-text);
+}
+.project-card li strong {
+    color: var(--text-light);
+}
+
+/* --- 6. EDUCATIONAL BACKGROUND (Grid Layout) --- */
+.education-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    margin-bottom: 20px;
+}
+.education-item {
+    background-color: var(--card-bg);
+    padding: 30px;
+    border-radius: 10px;
+    border-top: 5px solid var(--subtle-text);
+}
+.education-item h3 {
+    color: var(--primary-color);
+    font-size: 1.6rem;
+}
+.education-image-placeholder {
+    margin: 15px 0;
+}
+.edu-visual {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+.education-detail {
+    color: var(--subtle-text);
+    padding: 0 10px;
+}
+
+/* --- 7. TECHNICAL EXPERTISE & TOOLS (Detailed) --- */
+
+/* ** CSS FOR FONT AWESOME ICONS ** */
+.skill-icon {
+    /* Use font-size instead of width/height for icon fonts */
+    font-size: 40px; 
+    color: var(--primary-color); /* Set color to accent color */
+    margin-bottom: 10px;
+}
+/* ******************************************* */
+
+.detailed-skills-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+}
+.detailed-skill {
+    background-color: var(--card-bg);
+    padding: 30px;
+    border-radius: 10px;
+    border-left: 5px solid var(--primary-color);
+}
+
+.detailed-skill h4 {
+    color: var(--primary-color);
+    font-size: 1.2rem;
+}
+
+/* --- 8. PROFESSIONAL PHILOSOPHY & APPROACH --- */
+.philosophy-section blockquote {
+    border-left: 5px solid var(--primary-color);
+    padding-left: 20px;
+    margin: 3rem 0;
+    font-size: 1.4rem;
+    font-style: italic;
+    color: var(--primary-color);
+}
+
+/* --- 9. CONTACT/FOOTER SECTION (Side-by-Side) --- */
+.contact-section {
+    background-color: var(--card-bg);
+    padding: 40px 20px;
+    border-radius: 10px;
+}
+.contact-section h2 {
+    border-bottom: none;
+    margin-top: 0;
+    text-align: center;
+}
+.contact-container {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+}
+.contact-text {
+    flex: 1;
+}
+.contact-illustration {
+    flex-shrink: 0;
+    width: 300px;
+}
+.illustration-visual {
+    width: 100%;
+    height: auto;
+}
+.contact-info {
+    margin-top: 20px;
+    padding: 15px;
+    border-top: 1px solid var(--timeline-color);
+}
+.contact-info h4 {
+    color: var(--text-light);
+}
+
+footer {
+    text-align: center;
+    padding: 30px;
+    border-top: 1px solid var(--timeline-color);
+    color: var(--subtle-text);
+    font-size: 0.9rem;
+    margin-top: 40px;
+}
+
+/* RESPONSIVENESS (Mobile View) */
+@media (max-width: 992px) {
+    /* Main grids stack on smaller screens */
+    .skills-grid, .certifications-grid, .projects-grid, .education-grid, .detailed-skills-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Summary and Contact sections stack */
+    .summary-content, .contact-container, .job-detail-content {
+        flex-direction: column;
+    }
+    .core-expertise-list, .contact-illustration, .experience-image-placeholder {
+        width: 100%;
+        max-width: 100%;
+    }
+    .experience-image-placeholder {
+        order: -1; /* Place image above text */
+    }
+
+    /* Timeline stack */
+    .timeline::after {
+        left: 15px; /* Move line to the left */
+    }
+    .timeline-item {
+        width: 100%;
+        padding-left: 45px;
+        padding-right: 15px;
+    }
+    .timeline-item.right {
+        left: 0%;
+    }
+    .timeline-item.left .timeline-dot, .timeline-item.right .timeline-dot {
+        left: 1px;
+    }
+    .timeline-item.left .timeline-content::after, .timeline-item.right .timeline-content::after {
+        border: medium solid var(--card-bg);
+        border-width: 10px 10px 10px 0;
+        border-color: transparent var(--card-bg) transparent transparent;
+        left: -15px;
+        right: auto;
+    }
+    
+    /* Header stack */
+    .header-container {
+        flex-direction: column;
+        text-align: center;
+        gap: 30px;
+    }
+    .header-content {
+        text-align: center; 
+    }
+    .metric-value {
+        font-size: 2rem;
+    }
+}
